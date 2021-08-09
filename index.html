@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body class="container">
+        <div class="library-container">
+            <div class="border-container">
+                <div class="border-blue">
+                    <div class="border-green">
+                        <div class="border-tan">
+                            <div class="border-orange">
+                                <div class="border-red">    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 id="library-title">Library</h1>
+            <table id="library">
+                <thread>
+                    <tr id="info">
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Pages</th>
+                        <th>Read</th>
+                        <th>Remove</th>
+                    </tr>
+                    <tbody id="list"></tbody>
+                </thread>
+            </table>
+            <button id="addBook">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg>
+            </button>
+            <div id="formModal">
+                <form action="#" id="newBookForm">
+                    <div id="closeBtn" class="close">
+                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+                    </div>
+                    <h2>Add a New Book</h2>
+                    <label for="title" id="form-label">Book Title</label>
+                    <input type="text" id="title" name="title" placeholder="Book Title">
+                    <label for="author">Book Author</label>
+                    <input type="text" id="author" name="author" placeholder="Book Author">
+                    <label for="pages">Page Count</label>
+                    <input type="number" id="pages" name="pages" placeholder="Pages">
+                    <label for="read">Have you read this book before?</label>
+                    <input type="checkbox" id="read" name="checkbox" value="">
+                    <input type="submit" value="Add Book" id="add"></input>
+                </form>
+            </div>
+        </div>
+    <script src="main.js"></script>
+    </body>
+</html>
