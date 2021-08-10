@@ -26,8 +26,8 @@ html {
 }
 .border-container {
     position: relative;
-    top: 450px;
-    right: 85px;
+    top: 520px;
+    right: 40px;
 }
 .border-blue {
     position: relative;
@@ -155,24 +155,22 @@ button {
 /* Library Settings */
 .library-container {
     position: absolute;
-    bottom: -80px;
-    left: 50px;
+    bottom: 0px;
     width: 100%;
-    height: 150vh;
+    height: 150%;
+    margin: 0 auto;
 }
 
 #library-title {
     position: relative;
-    bottom: 420px;
-    left: -50px;
+    bottom: 350px;
     width: 100%;
     margin: 0 auto;
 }
 
 #library {
     position: relative;
-    bottom: 420px;
-    left: -50px;
+    bottom: 350px;
     margin: 0 auto;
 }
 
@@ -262,18 +260,19 @@ button {
 
 .book-removed {
     position: relative;
-    bottom: 50px;
+    top: -380px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 500px;
     color: #fff;
     background-color: var(--retro-cyan);
     font-size: 20px;
     font-weight: 400;
     text-align: center;
-    margin: 0 auto;
+    margin-top: 15px;
     padding: 10px 15px 10px 15px;
-    width: 500px;
+    margin: 0 auto;
     border: none;
     border-radius: 20px;
     box-shadow: 0 5px 8px rgba(0,0,0,0.25);

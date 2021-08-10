@@ -47,13 +47,11 @@ class EventHandler {
         //        read: true
         //    }
         //];
-
         //const books = library;
         const books = Storage.getBooks();
         books.forEach((book) => EventHandler.addBookToLibrary(book));
-        
     }
-    // Add to library
+    // Add to Library
     static addBookToLibrary(book) {
         const list = document.getElementById("list");
         const row = document.createElement('tr');
@@ -68,7 +66,7 @@ class EventHandler {
 
         list.appendChild(row);
     }
-    // Show Alert
+    // Show Validation
     static showAlert(message, className) {
         const div = document.createElement('div');
         div.className = `${className}`;
@@ -80,7 +78,7 @@ class EventHandler {
         setTimeout(() => document.querySelector('.validate').remove(), 5000);
         setTimeout(() => document.querySelector('.success').remove(), 5000);
     }
-    // Show Alert that Book was removed
+    // Show that Book was removed
     static showAlertRemoved(message, className) {
         const div = document.createElement('div');
         div.className = `${className}`;
@@ -91,7 +89,7 @@ class EventHandler {
         // Vanish
         setTimeout(() => document.querySelector('.book-removed').remove(), 5000);
     }
-    // Change readBtn
+    // Change Read from true to false and vise versa
     static changeRead(el) {
         if(el.classList.contains('readBtn')) {
             if (el.innerHTML == "true") {
@@ -103,7 +101,7 @@ class EventHandler {
             } 
         }
     }
-    // Remove Book from library
+    // Remove Book from Library
     static removeBook(el) {
         if(el.classList.contains('remove')) {
             el.parentElement.parentElement.remove();
@@ -130,7 +128,7 @@ class Storage {
         return books;
     }
 
-    static addBook(book) {
+    static addBooks(book) {
         const books = Storage.getBooks();
         books.push(book);
         localStorage.setItem('books', JSON.stringify(books));
@@ -167,7 +165,7 @@ newBookForm.addEventListener('submit', (e)=> {
         // Add Book to EventHandler
         EventHandler.addBookToLibrary(book);
         // Add Book to Storage
-        Storage.addBook(book);
+        Storage.addBooks(book);
         // Success
         EventHandler.showAlert('Success!', 'success');
         //Clear Form
@@ -186,7 +184,6 @@ document.getElementById("list").addEventListener('click', (e)=> {
     EventHandler.removeBook(e.target);
     // Remove Book from Storage
     Storage.removeBooks(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
-    console.log(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
 });
 
 // Checkbox Event Listener
