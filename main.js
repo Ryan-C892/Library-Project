@@ -15,41 +15,41 @@ class Book {
 // EventHandler Class: Handle Events
 class EventHandler {
     static displayBooks() {
-        const library = [
-            {
-                title: 'Don Quixote',
-                author: 'Miguel de Cervantes',
-                pages: 800,
-                read: true
-            },
-            {
-                title: 'This Is Why I Hate You',
-                author: 'Onision',
-                pages: 156,
-                read: false
-            },
-            {
-                title: 'The Count of Monte Cristo',
-                author: 'Alexandre Dumas',
-                pages: 1276,
-                read: true
-            },
-            {
-                title: 'Salammbô',
-                author: 'Gustave Flaubert',
-                pages: 288,
-                read: false
-            },
-            {
-                title: 'The Great Gatsby',
-                author: 'F. Scott Fitzgerald',
-                pages: 240,
-                read: true
-            }
-        ];
+        //const library = [
+        //    {
+        //        title: 'Don Quixote',
+        //        author: 'Miguel de Cervantes',
+        //        pages: 800,
+        //        read: true
+        //    },
+        //    {
+        //        title: 'This Is Why I Hate You',
+        //        author: 'Onision',
+        //        pages: 156,
+        //        read: false
+        //    },
+        //    {
+        //        title: 'The Count of Monte Cristo',
+        //        author: 'Alexandre Dumas',
+        //        pages: 1276,
+        //        read: true
+        //    },
+        //    {
+        //        title: 'Salammbô',
+        //        author: 'Gustave Flaubert',
+        //        pages: 288,
+        //        read: false
+        //    },
+        //    {
+        //        title: 'The Great Gatsby',
+        //        author: 'F. Scott Fitzgerald',
+        //        pages: 240,
+        //        read: true
+        //    }
+        //];
 
-        const books = library;
-
+        //const books = library;
+        const books = Storage.getBooks();
         books.forEach((book) => EventHandler.addBookToLibrary(book));
         
     }
@@ -118,7 +118,34 @@ class EventHandler {
         document.getElementById("read").value = false;
     }
 }
+// Storage Class: Handles Storage
+class Storage {
+    static getBooks() {
+        let books;
+        if(localStorage.getItem('books') === null) {
+            books = [];
+        } else {
+            books = JSON.parse(localStorage.getItem('books'));
+        }
+        return books;
+    }
 
+    static addBook(book) {
+        const books = Storage.getBooks();
+        books.push(book);
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+
+    static removeBooks(pages) {
+        const books = Storage.getBooks();
+        books.forEach((book, index) => {
+            if(book.pages === pages) {
+                books.splice(index, 1);
+            }
+        });
+        localStorage.setItem('books', JSON.stringify(books));
+    }
+}
 // Display Books
 document.addEventListener('DOMContentLoaded', EventHandler.displayBooks);
 
@@ -137,8 +164,10 @@ newBookForm.addEventListener('submit', (e)=> {
         // Book
         const book = new Book(title, author, pages, read);
         console.log(book);
-        //Add Book to EventHandler
+        // Add Book to EventHandler
         EventHandler.addBookToLibrary(book);
+        // Add Book to Storage
+        Storage.addBook(book);
         // Success
         EventHandler.showAlert('Success!', 'success');
         //Clear Form
@@ -153,7 +182,11 @@ document.getElementById("list").addEventListener('click', (e)=> {
 
 // Remove Book
 document.getElementById("list").addEventListener('click', (e)=> {
+    // Remove Book from EventHandler
     EventHandler.removeBook(e.target);
+    // Remove Book from Storage
+    Storage.removeBooks(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
+    console.log(e.target.parentElement.previousElementSibling.previousElementSibling.textContent);
 });
 
 // Checkbox Event Listener
