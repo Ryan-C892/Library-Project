@@ -159,7 +159,7 @@ document.getElementById("list").addEventListener('click', (e)=> {
 // Checkbox Event Listener
 checkbox = document.getElementById("read");
 checkbox.addEventListener('change', (event)=> {
-    if (event.currentTarget.checked) {
+    if (event.target.checked) {
         checkbox.value = true;
         console.log("True!");
     } else {
